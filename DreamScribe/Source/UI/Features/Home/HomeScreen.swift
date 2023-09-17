@@ -41,7 +41,7 @@ struct HomeScreen: View, NavigableView {
     @ViewBuilder
     private func buildListView() -> some View {
         ScrollView {
-            ForEach(viewModel.dreams, id: \.id) { dream in
+            ForEach(Array(viewModel.dreams.enumerated()), id: \.offset) { (index, dream) in
                 HomeItemView(dream: dream, didTapDream: { dream in
                     didTapDream(dream)
                 }, didRemoveDream: { dream in

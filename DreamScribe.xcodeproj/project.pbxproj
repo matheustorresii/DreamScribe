@@ -30,6 +30,7 @@
 		FCA1F5E42AB6DE570063D3BE /* FlexibleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA1F5E32AB6DE570063D3BE /* FlexibleView.swift */; };
 		FCA1F5E62AB6E08B0063D3BE /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA1F5E52AB6E08B0063D3BE /* Constants.swift */; };
 		FCA1F5E82AB6F5980063D3BE /* AddViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA1F5E72AB6F5980063D3BE /* AddViewModel.swift */; };
+		FCA1F5EA2AB6FC3F0063D3BE /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA1F5E92AB6FC3F0063D3BE /* LoadingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		FCA1F5E32AB6DE570063D3BE /* FlexibleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexibleView.swift; sourceTree = "<group>"; };
 		FCA1F5E52AB6E08B0063D3BE /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		FCA1F5E72AB6F5980063D3BE /* AddViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewModel.swift; sourceTree = "<group>"; };
+		FCA1F5E92AB6FC3F0063D3BE /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +181,7 @@
 			isa = PBXGroup;
 			children = (
 				FCA1F5CF2AB6C2F30063D3BE /* LottieView.swift */,
+				FCA1F5E92AB6FC3F0063D3BE /* LoadingView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -333,6 +336,7 @@
 				FCA1F5DE2AB6D74A0063D3BE /* AddScreen.swift in Sources */,
 				FCA1F5C62AB6BDEF0063D3BE /* DreamModel.swift in Sources */,
 				FCA1F5BF2AB680C80063D3BE /* View+Extensions.swift in Sources */,
+				FCA1F5EA2AB6FC3F0063D3BE /* LoadingView.swift in Sources */,
 				FCA1F5E42AB6DE570063D3BE /* FlexibleView.swift in Sources */,
 				FCA1F5A02AB67EA30063D3BE /* DreamScribeApp.swift in Sources */,
 				FCA1F5D02AB6C2F30063D3BE /* LottieView.swift in Sources */,

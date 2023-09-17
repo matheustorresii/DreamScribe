@@ -49,12 +49,7 @@ struct AddScreen: View, NavigableView {
         }
         .overlay {
             if isLoading {
-                ZStack {
-                    Color.white.opacity(0.5).ignoresSafeArea()
-                    ProgressView()
-                        .controlSize(.large)
-                        .tint(.dreamPurple)
-                }
+                LoadingView()
             }
         }
         .navigationTitle("New Dream")
