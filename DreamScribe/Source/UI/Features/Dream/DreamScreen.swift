@@ -38,6 +38,7 @@ struct DreamScreen: View, NavigableView {
         }
         .navigationTitle(dream.date)
         .navigationBarTitleDisplayMode(.inline)
+        .toolbarBackground(Color.dreamPink, for: .navigationBar)
     }
     
     @ViewBuilder
