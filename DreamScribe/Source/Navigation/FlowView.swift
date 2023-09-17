@@ -32,5 +32,6 @@ struct FlowView: View {
             }
         }
         .environmentObject(appCoordinator)
+        .environment(\.colorScheme, .light)
     }
 }
