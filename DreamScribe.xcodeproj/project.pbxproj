@@ -16,6 +16,9 @@
 		FCA1F5B62AB67EF20063D3BE /* NavigableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA1F5B52AB67EF20063D3BE /* NavigableView.swift */; };
 		FCA1F5BB2AB680210063D3BE /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA1F5BA2AB680210063D3BE /* HomeScreen.swift */; };
 		FCA1F5BF2AB680C80063D3BE /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA1F5BE2AB680C80063D3BE /* View+Extensions.swift */; };
+		FCA1F5C62AB6BDEF0063D3BE /* DreamModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA1F5C52AB6BDEF0063D3BE /* DreamModel.swift */; };
+		FCA1F5C82AB6BF1B0063D3BE /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA1F5C72AB6BF1B0063D3BE /* HomeViewModel.swift */; };
+		FCA1F5CB2AB6C1290063D3BE /* HomeEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA1F5CA2AB6C1290063D3BE /* HomeEmptyView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +32,9 @@
 		FCA1F5B52AB67EF20063D3BE /* NavigableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigableView.swift; sourceTree = "<group>"; };
 		FCA1F5BA2AB680210063D3BE /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
 		FCA1F5BE2AB680C80063D3BE /* View+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extensions.swift"; sourceTree = "<group>"; };
+		FCA1F5C52AB6BDEF0063D3BE /* DreamModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DreamModel.swift; sourceTree = "<group>"; };
+		FCA1F5C72AB6BF1B0063D3BE /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		FCA1F5CA2AB6C1290063D3BE /* HomeEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeEmptyView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +86,7 @@
 		FCA1F5AD2AB67ECA0063D3BE /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				FCA1F5C32AB6BDE20063D3BE /* Domain */,
 				FCA1F5AE2AB67ED30063D3BE /* Navigation */,
 				FCA1F5B72AB6800C0063D3BE /* UI */,
 				FCA1F5BC2AB680B80063D3BE /* Utils */,
@@ -118,7 +125,9 @@
 		FCA1F5B92AB680150063D3BE /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				FCA1F5C92AB6C11F0063D3BE /* Components */,
 				FCA1F5BA2AB680210063D3BE /* HomeScreen.swift */,
+				FCA1F5C72AB6BF1B0063D3BE /* HomeViewModel.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -142,6 +151,30 @@
 		FCA1F5C22AB687770063D3BE /* Components */ = {
 			isa = PBXGroup;
 			children = (
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		FCA1F5C32AB6BDE20063D3BE /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				FCA1F5C42AB6BDE40063D3BE /* Models */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		FCA1F5C42AB6BDE40063D3BE /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				FCA1F5C52AB6BDEF0063D3BE /* DreamModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		FCA1F5C92AB6C11F0063D3BE /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				FCA1F5CA2AB6C1290063D3BE /* HomeEmptyView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -217,12 +250,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				FCA1F5B62AB67EF20063D3BE /* NavigableView.swift in Sources */,
+				FCA1F5C82AB6BF1B0063D3BE /* HomeViewModel.swift in Sources */,
 				FCA1F5B02AB67EDF0063D3BE /* AppCoordinator.swift in Sources */,
 				FCA1F5BB2AB680210063D3BE /* HomeScreen.swift in Sources */,
 				FCA1F5B22AB67EE60063D3BE /* FlowRoute.swift in Sources */,
 				FCA1F5B42AB67EEB0063D3BE /* FlowView.swift in Sources */,
+				FCA1F5C62AB6BDEF0063D3BE /* DreamModel.swift in Sources */,
 				FCA1F5BF2AB680C80063D3BE /* View+Extensions.swift in Sources */,
 				FCA1F5A02AB67EA30063D3BE /* DreamScribeApp.swift in Sources */,
+				FCA1F5CB2AB6C1290063D3BE /* HomeEmptyView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

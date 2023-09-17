@@ -8,17 +8,39 @@
 import Combine
 import SwiftUI
 struct HomeScreen: View, NavigableView {
+    
+    // MARK: - PUBLIC PROPERTIES
+    
     var navigation: PassthroughSubject<FlowNavigationStyle, Never> = .init()
     
+    // MARK: - PRIVATE PROPERTIES
+    
+    private let viewModel: HomeViewModel
+    
+    // MARK: - INITIALIZERS
+    
+    init(viewModel: HomeViewModel = .init()) {
+        self.viewModel = viewModel
+    }
+    
+    // MARK: - BODY
+    
     var body: some View {
-        ScrollView {
-            
+        VStack(spacing: 0) {
+            ScrollView(showsIndicators: false) {
+                if viewModel.dreams.isEmpty {
+                    HomeEmptyView()
+                } else {
+                    buildListView()
+                }
+            }
         }
     }
-}
-
-struct HomeScreen_Previews: PreviewProvider {
-    static var previews: some View {
-        HomeScreen()
+    
+    // MARK: - PRIVATE METHODS
+    
+    @ViewBuilder
+    private func buildListView() -> some View {
+        
     }
 }
