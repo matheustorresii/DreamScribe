@@ -31,6 +31,9 @@ struct HomeScreen: View, NavigableView {
                 didTapFloatingButton()
             }
         }
+        .onAppear {
+            viewModel.onAppear()
+        }
     }
     
     // MARK: - PRIVATE METHODS

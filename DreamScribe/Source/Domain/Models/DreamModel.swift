@@ -15,7 +15,7 @@ struct DreamModel: Codable {
     let type: DreamType
 }
 
-enum DreamType: String, Codable {
+enum DreamType: String, Codable, CaseIterable {
     case normal = "Normal"
     case nightmare = "Nightmare"
     case lucid = "Lucid"

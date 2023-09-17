@@ -9,17 +9,21 @@ import SwiftUI
 
 struct HomeEmptyView: View {
     var body: some View {
-        VStack {
+        HStack {
             Spacer()
-            Image("sleepy")
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 250, height: 250)
-            Text("No dreams found...")
-                .font(.system(size: 24))
-                .fontWeight(.bold)
-                .foregroundColor(.dreamPurple)
-                .padding(.top, -70)
+            VStack {
+                Spacer()
+                Image("sleepy")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 250, height: 250)
+                Text("No dreams found...")
+                    .font(.system(size: 24))
+                    .fontWeight(.bold)
+                    .foregroundColor(.dreamPurple)
+                    .padding(.top, -70)
+                Spacer()
+            }
             Spacer()
         }
     }

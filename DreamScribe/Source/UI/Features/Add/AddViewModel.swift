@@ -1,5 +1,5 @@
 //
-//  HomeViewModel.swift
+//  AddViewModel.swift
 //  DreamScribe
 //
 //  Created by Matheus Torres on 17/09/23.
@@ -7,11 +7,8 @@
 
 import Foundation
 
-class HomeViewModel: ObservableObject {
-    
-    // MARK: - PUBLIC PROPERTIES
-    
-    @Published private(set) var dreams: [DreamModel] = []
+class AddViewModel: ObservableObject {
+    private var dreams: [DreamModel] = []
     
     // MARK: - PRIVATE PROPERTIES
     
@@ -25,14 +22,9 @@ class HomeViewModel: ObservableObject {
     
     // MARK: - PUBLIC METHODS
     
-    func removeDream(_ dream: DreamModel) {
-        guard let index = dreams.firstIndex(where: { $0.id == dream.id }) else { return }
-        dreams.remove(at: index)
+    func saveDream(_ dream: DreamModel) {
+        dreams.insert(dream, at: .zero)
         updateDreams()
-    }
-    
-    func onAppear() {
-        setupDreams()
     }
     
     // MARK: - PRIVATE METHODS
