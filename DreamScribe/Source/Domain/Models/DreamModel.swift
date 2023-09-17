@@ -16,7 +16,7 @@ struct DreamModel: Codable {
 }
 
 enum DreamType: String, Codable {
-    case normal
-    case nightmare
-    case lucid
+    case normal = "Normal"
+    case nightmare = "Nightmare"
+    case lucid = "Lucid"
 }

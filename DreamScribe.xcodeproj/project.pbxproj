@@ -24,6 +24,11 @@
 		FCA1F5D52AB6C8AB0063D3BE /* cat.json in Resources */ = {isa = PBXBuildFile; fileRef = FCA1F5D42AB6C8AB0063D3BE /* cat.json */; };
 		FCA1F5D72AB6C90C0063D3BE /* Color+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA1F5D62AB6C90C0063D3BE /* Color+Extensions.swift */; };
 		FCA1F5D92AB6CB7A0063D3BE /* HomeItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA1F5D82AB6CB7A0063D3BE /* HomeItemView.swift */; };
+		FCA1F5DB2AB6D2D50063D3BE /* HomeFloatingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA1F5DA2AB6D2D50063D3BE /* HomeFloatingButton.swift */; };
+		FCA1F5DE2AB6D74A0063D3BE /* AddScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA1F5DD2AB6D74A0063D3BE /* AddScreen.swift */; };
+		FCA1F5E12AB6D7A70063D3BE /* DreamScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA1F5E02AB6D7A70063D3BE /* DreamScreen.swift */; };
+		FCA1F5E42AB6DE570063D3BE /* FlexibleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA1F5E32AB6DE570063D3BE /* FlexibleView.swift */; };
+		FCA1F5E62AB6E08B0063D3BE /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA1F5E52AB6E08B0063D3BE /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +49,11 @@
 		FCA1F5D42AB6C8AB0063D3BE /* cat.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cat.json; sourceTree = "<group>"; };
 		FCA1F5D62AB6C90C0063D3BE /* Color+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extensions.swift"; sourceTree = "<group>"; };
 		FCA1F5D82AB6CB7A0063D3BE /* HomeItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeItemView.swift; sourceTree = "<group>"; };
+		FCA1F5DA2AB6D2D50063D3BE /* HomeFloatingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFloatingButton.swift; sourceTree = "<group>"; };
+		FCA1F5DD2AB6D74A0063D3BE /* AddScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddScreen.swift; sourceTree = "<group>"; };
+		FCA1F5E02AB6D7A70063D3BE /* DreamScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DreamScreen.swift; sourceTree = "<group>"; };
+		FCA1F5E32AB6DE570063D3BE /* FlexibleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexibleView.swift; sourceTree = "<group>"; };
+		FCA1F5E52AB6E08B0063D3BE /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +138,8 @@
 		FCA1F5B82AB680100063D3BE /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				FCA1F5DC2AB6D7280063D3BE /* Add */,
+				FCA1F5DF2AB6D79D0063D3BE /* Dream */,
 				FCA1F5B92AB680150063D3BE /* Home */,
 			);
 			path = Features;
@@ -147,6 +159,7 @@
 			isa = PBXGroup;
 			children = (
 				FCA1F5BD2AB680BE0063D3BE /* Extensions */,
+				FCA1F5E52AB6E08B0063D3BE /* Constants.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -189,6 +202,7 @@
 			children = (
 				FCA1F5CA2AB6C1290063D3BE /* HomeEmptyView.swift */,
 				FCA1F5D82AB6CB7A0063D3BE /* HomeItemView.swift */,
+				FCA1F5DA2AB6D2D50063D3BE /* HomeFloatingButton.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -199,6 +213,31 @@
 				FCA1F5D42AB6C8AB0063D3BE /* cat.json */,
 			);
 			path = Resource;
+			sourceTree = "<group>";
+		};
+		FCA1F5DC2AB6D7280063D3BE /* Add */ = {
+			isa = PBXGroup;
+			children = (
+				FCA1F5DD2AB6D74A0063D3BE /* AddScreen.swift */,
+			);
+			path = Add;
+			sourceTree = "<group>";
+		};
+		FCA1F5DF2AB6D79D0063D3BE /* Dream */ = {
+			isa = PBXGroup;
+			children = (
+				FCA1F5E22AB6DE3E0063D3BE /* Components */,
+				FCA1F5E02AB6D7A70063D3BE /* DreamScreen.swift */,
+			);
+			path = Dream;
+			sourceTree = "<group>";
+		};
+		FCA1F5E22AB6DE3E0063D3BE /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				FCA1F5E32AB6DE570063D3BE /* FlexibleView.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -283,14 +322,19 @@
 				FCA1F5B02AB67EDF0063D3BE /* AppCoordinator.swift in Sources */,
 				FCA1F5BB2AB680210063D3BE /* HomeScreen.swift in Sources */,
 				FCA1F5B22AB67EE60063D3BE /* FlowRoute.swift in Sources */,
+				FCA1F5E12AB6D7A70063D3BE /* DreamScreen.swift in Sources */,
 				FCA1F5B42AB67EEB0063D3BE /* FlowView.swift in Sources */,
+				FCA1F5DB2AB6D2D50063D3BE /* HomeFloatingButton.swift in Sources */,
 				FCA1F5D92AB6CB7A0063D3BE /* HomeItemView.swift in Sources */,
+				FCA1F5DE2AB6D74A0063D3BE /* AddScreen.swift in Sources */,
 				FCA1F5C62AB6BDEF0063D3BE /* DreamModel.swift in Sources */,
 				FCA1F5BF2AB680C80063D3BE /* View+Extensions.swift in Sources */,
+				FCA1F5E42AB6DE570063D3BE /* FlexibleView.swift in Sources */,
 				FCA1F5A02AB67EA30063D3BE /* DreamScribeApp.swift in Sources */,
 				FCA1F5D02AB6C2F30063D3BE /* LottieView.swift in Sources */,
 				FCA1F5CB2AB6C1290063D3BE /* HomeEmptyView.swift in Sources */,
 				FCA1F5D72AB6C90C0063D3BE /* Color+Extensions.swift in Sources */,
+				FCA1F5E62AB6E08B0063D3BE /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

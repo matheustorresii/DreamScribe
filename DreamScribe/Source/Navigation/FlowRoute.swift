@@ -14,6 +14,8 @@ enum FlowNavigationStyle {
 
 enum FlowRoute {
     case home
+    case add
+    case dream(DreamModel)
     
     static var defaultRoute: FlowRoute {
         return .home
@@ -23,8 +25,10 @@ enum FlowRoute {
 extension FlowRoute: Hashable {
     static func == (lhs: FlowRoute, rhs: FlowRoute) -> Bool {
         switch (lhs, rhs) {
-        case (.home, .home):
+        case (.home, .home), (.add, .add), (.dream, .dream):
             return true
+        default:
+            return false
         }
     }
     
@@ -32,6 +36,10 @@ extension FlowRoute: Hashable {
         switch self {
         case .home:
             hasher.combine(1)
+        case .add:
+            hasher.combine(2)
+        case .dream:
+            hasher.combine(3)
         }
     }
 }

@@ -9,6 +9,10 @@ import SwiftUI
 
 struct HomeItemView: View {
     var dream: DreamModel
+    var didTapDream: ((DreamModel) -> Void)?
+    var didRemoveDream: ((DreamModel) -> Void)?
+    
+    @State private var showingAlert: Bool = false
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
@@ -24,6 +28,18 @@ struct HomeItemView: View {
         .padding(16)
         .background(Color.white)
         .cornerRadius(8)
+        .onTapGesture {
+            didTapDream?(dream)
+        }
+        .onLongPressGesture {
+            showingAlert.toggle()
+        }
+        .alert("Delete this dream?", isPresented: $showingAlert) {
+            Button("Delete", role: .destructive) {
+                didRemoveDream?(dream)
+            }
+            Button("Cancel", role: .cancel) { }
+        }
     }
 }
 

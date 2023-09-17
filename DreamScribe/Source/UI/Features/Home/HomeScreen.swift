@@ -15,25 +15,20 @@ struct HomeScreen: View, NavigableView {
     
     // MARK: - PRIVATE PROPERTIES
     
-    private let viewModel: HomeViewModel
-    
-    // MARK: - INITIALIZERS
-    
-    init(viewModel: HomeViewModel = .init()) {
-        self.viewModel = viewModel
-    }
+    @ObservedObject private var viewModel: HomeViewModel = .init()
     
     // MARK: - BODY
     
     var body: some View {
-        ZStack {
+        ZStack(alignment: .bottomTrailing) {
             Color.dreamPink.ignoresSafeArea()
-            VStack(spacing: 0) {
-                if viewModel.dreams.isEmpty {
-                    HomeEmptyView()
-                } else {
-                    buildListView()
-                }
+            if viewModel.dreams.isEmpty {
+                HomeEmptyView()
+            } else {
+                buildListView()
+            }
+            HomeFloatingButton {
+                didTapFloatingButton()
             }
         }
     }
@@ -42,19 +37,36 @@ struct HomeScreen: View, NavigableView {
     
     @ViewBuilder
     private func buildListView() -> some View {
-        ScrollView(showsIndicators: false) {
+        ScrollView {
             ForEach(viewModel.dreams, id: \.id) { dream in
-                HomeItemView(dream: dream)
-                    .onTapGesture {
-                        didTapDream(dream)
-                    }
-                    .padding(.vertical, 8)
+                HomeItemView(dream: dream, didTapDream: { dream in
+                    didTapDream(dream)
+                }, didRemoveDream: { dream in
+                    didRemoveDream(dream)
+                })
+                .padding(.vertical, 8)
+            }
+            .onDelete { index in
+                print(index)
             }
         }
-        .padding(16)
+        .padding(.horizontal, 16)
+        .navigationTitle("DreamScribe")
+        .navigationBarTitleDisplayMode(.large)
+        .toolbarBackground(Color.dreamPink, for: .navigationBar)
     }
     
     private func didTapDream(_ dream: DreamModel) {
-        print(dream.description)
+        navigation.send(.push(.dream(dream)))
+    }
+    
+    private func didRemoveDream(_ dream: DreamModel) {
+        withAnimation {
+            viewModel.removeDream(dream)
+        }
+    }
+    
+    private func didTapFloatingButton() {
+        navigation.send(.push(.add))
     }
 }

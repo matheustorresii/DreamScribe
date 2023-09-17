@@ -39,6 +39,10 @@ final class AppCoordinator: ObservableObject {
         switch route {
         case .home:
             view = HomeScreen()
+        case .add:
+            view = AddScreen()
+        case .dream(let dream):
+            view = DreamScreen(dream: dream)
         }
         bind(view: view)
         return view
