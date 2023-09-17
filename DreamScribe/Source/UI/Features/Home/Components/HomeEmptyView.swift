@@ -9,7 +9,17 @@ import SwiftUI
 
 struct HomeEmptyView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            Spacer()
+            LottieView(name: "cat")
+                .frame(width: 300, height: 300)
+            Text("No dreams found...")
+                .font(.system(size: 24))
+                .fontWeight(.bold)
+                .foregroundColor(.dreamPurple)
+                .padding(.top, -40)
+            Spacer()
+        }
     }
 }
 

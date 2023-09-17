@@ -8,7 +8,7 @@
 import Foundation
 
 struct DreamModel: Codable {
-    let id: UUID = .init()
+    var id: UUID = .init()
     let date: String
     let description: String
     let tags: [String]

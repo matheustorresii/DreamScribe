@@ -7,11 +7,26 @@
 
 import Foundation
 
+let mockDreams: [DreamModel] = [
+    .init(date: "Saturday, 8th August 2020",
+          description: "I was in my high scholl with my friend Gabriela, trying to run from mysterious man that was searching for us.",
+          tags: ["Gabriela", "High School", "Mysterious Man"],
+          type: .nightmare),
+    .init(date: "Monday, 9th August 2020",
+          description: "It was kinda nice",
+          tags: ["Happy"],
+          type: .normal),
+    .init(date: "Monday, 10th August 2020",
+          description: "A really really really really really really really really really really really really really really really really really really really really really long lucid dream",
+          tags: ["long"],
+          type: .lucid)
+]
+
 class HomeViewModel: ObservableObject {
     
     // MARK: - PUBLIC PROPERTIES
     
-    @Published private(set) var dreams: [DreamModel] = []
+    @Published private(set) var dreams: [DreamModel] = mockDreams
     
     // MARK: - PRIVATE PROPERTIES
     
@@ -20,7 +35,7 @@ class HomeViewModel: ObservableObject {
     // MARK: - INITIALIZERS
     
     init() {
-        setupDreams()
+//        setupDreams()
     }
     
     // MARK: - PUBLIC METHODS

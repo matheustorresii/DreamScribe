@@ -26,8 +26,9 @@ struct HomeScreen: View, NavigableView {
     // MARK: - BODY
     
     var body: some View {
-        VStack(spacing: 0) {
-            ScrollView(showsIndicators: false) {
+        ZStack {
+            Color.dreamPink.ignoresSafeArea()
+            VStack(spacing: 0) {
                 if viewModel.dreams.isEmpty {
                     HomeEmptyView()
                 } else {
@@ -41,6 +42,19 @@ struct HomeScreen: View, NavigableView {
     
     @ViewBuilder
     private func buildListView() -> some View {
-        
+        ScrollView(showsIndicators: false) {
+            ForEach(viewModel.dreams, id: \.id) { dream in
+                HomeItemView(dream: dream)
+                    .onTapGesture {
+                        didTapDream(dream)
+                    }
+                    .padding(.vertical, 8)
+            }
+        }
+        .padding(16)
+    }
+    
+    private func didTapDream(_ dream: DreamModel) {
+        print(dream.description)
     }
 }

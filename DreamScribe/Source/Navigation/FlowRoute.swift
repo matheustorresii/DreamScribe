@@ -25,8 +25,6 @@ extension FlowRoute: Hashable {
         switch (lhs, rhs) {
         case (.home, .home):
             return true
-        default:
-            return false
         }
     }
     
