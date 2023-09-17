@@ -26,11 +26,14 @@ struct DreamScreen: View, NavigableView {
                     
                     Text("Type of dream: ")
                         .fontWeight(.bold)
+                        .foregroundColor(.dreamPurple)
                     +
                     Text(dream.type.rawValue)
+                        .foregroundColor(.dreamPurple)
                     
                     Text("Tags:")
                         .fontWeight(.bold)
+                        .foregroundColor(.dreamPurple)
                     buildKeywordsList()
                 }
             }

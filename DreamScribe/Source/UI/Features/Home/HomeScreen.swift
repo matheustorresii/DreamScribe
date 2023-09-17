@@ -57,6 +57,16 @@ struct HomeScreen: View, NavigableView {
         .navigationTitle("DreamScribe")
         .navigationBarTitleDisplayMode(.large)
         .toolbarBackground(Color.dreamPink, for: .navigationBar)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button {
+                    navigation.send(.push(.analytics))
+                } label: {
+                    Image(systemName: "chart.bar.xaxis")
+                        .foregroundColor(.dreamPurple)
+                }
+            }
+        }
     }
     
     private func didTapDream(_ dream: DreamModel) {

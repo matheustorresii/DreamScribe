@@ -8,10 +8,10 @@
 import Foundation
 
 class AddViewModel: ObservableObject {
-    private var dreams: [DreamModel] = []
     
     // MARK: - PRIVATE PROPERTIES
     
+    private var dreams: [DreamModel] = []
     private let dreamsAppStorageKey = "DREAMS"
     
     // MARK: - INITIALIZERS

@@ -43,6 +43,8 @@ final class AppCoordinator: ObservableObject {
             view = AddScreen()
         case .dream(let dream):
             view = DreamScreen(dream: dream)
+        case .analytics:
+            view = AnalyticsScreen()
         }
         bind(view: view)
         return view
