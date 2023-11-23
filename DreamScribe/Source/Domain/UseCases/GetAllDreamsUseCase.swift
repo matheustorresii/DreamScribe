@@ -26,18 +26,18 @@ final class GetAllDreamsUseCase: GetAllDreamsUseCaseProtocol {
     // MARK: - PUBLIC METHODS
     
     func execute() async throws -> [DreamModel] {
-        if MOCK {
-            return mockExecute()
+        if ENV == .local {
+            return localExecute()
         }
         
         let request = Request.getAllDreams
-        guard let response: [DreamAPIModel] = try? await networkOperation.request(request) else {
+        guard let response: [DreamModel] = try? await networkOperation.request(request) else {
             throw RequestError.unknown
         }
-        return response.map { $0.toModel() }
+        return response
     }
     
-    private func mockExecute() -> [DreamModel] {
+    private func localExecute() -> [DreamModel] {
         guard let data = UserDefaults.standard.data(forKey: dreamsAppStorageKey),
               let savedDreams = try? JSONDecoder().decode([DreamModel].self, from: data) else { return [] }
         return savedDreams

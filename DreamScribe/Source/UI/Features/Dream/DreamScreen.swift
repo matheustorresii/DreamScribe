@@ -17,7 +17,7 @@ struct DreamScreen: View, NavigableView {
             Color.dreamPink.ignoresSafeArea()
             ScrollView {
                 VStack(alignment: .leading, spacing: 8) {
-                    Text(dream.description)
+                    Text(dream.text)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .foregroundColor(.dreamPurple)
                         .padding(16)

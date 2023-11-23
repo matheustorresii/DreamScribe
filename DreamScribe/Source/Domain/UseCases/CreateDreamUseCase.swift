@@ -26,19 +26,19 @@ final class CreateDreamUseCase: CreateDreamUseCaseProtocol {
     // MARK: - PUBLIC METHODS
     
     func execute(dream: DreamModel) async throws -> DreamModel {
-        if MOCK {
-            return try mockExecute(dream: dream)
+        if ENV == .local {
+            return try localExecute(dream: dream)
         }
         
-        let request = Request.createDream(dream: dream.toApiModel())
+        let request = Request.createDream(dream: dream)
         
-        guard let response: DreamAPIModel = try? await networkOperation.request(request) else {
+        guard let response: DreamModel = try? await networkOperation.request(request) else {
             throw RequestError.unknown
         }
-        return response.toModel()
+        return response
     }
     
-    private func mockExecute(dream: DreamModel) throws -> DreamModel {
+    private func localExecute(dream: DreamModel) throws -> DreamModel {
         guard let data = UserDefaults.standard.data(forKey: dreamsAppStorageKey),
               var savedDreams = try? JSONDecoder().decode([DreamModel].self, from: data) else { throw RequestError.parsing }
         

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FC4B6F1D2B0F341A0088883F /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4B6F1C2B0F341A0088883F /* Environment.swift */; };
 		FCA1962A2AB705CB00D206E4 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCA196292AB705CB00D206E4 /* Launch Screen.storyboard */; };
 		FCA1F5A02AB67EA30063D3BE /* DreamScribeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA1F59F2AB67EA30063D3BE /* DreamScribeApp.swift */; };
 		FCA1F5A42AB67EA50063D3BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FCA1F5A32AB67EA50063D3BE /* Assets.xcassets */; };
@@ -43,6 +44,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FC4B6F1C2B0F341A0088883F /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Environment.swift; path = ../../../../../Downloads/Environment.swift; sourceTree = "<group>"; };
 		FCA196292AB705CB00D206E4 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		FCA1F59C2AB67EA30063D3BE /* DreamScribe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DreamScribe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCA1F59F2AB67EA30063D3BE /* DreamScribeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DreamScribeApp.swift; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 			children = (
 				FCA1F5BD2AB680BE0063D3BE /* Extensions */,
 				FCA1F5E52AB6E08B0063D3BE /* Constants.swift */,
+				FC4B6F1C2B0F341A0088883F /* Environment.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -336,7 +339,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1430;
-				LastUpgradeCheck = 1430;
+				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					FCA1F59B2AB67EA30063D3BE = {
 						CreatedOnToolsVersion = 14.3.1;
@@ -385,6 +388,7 @@
 			files = (
 				FCDF6CA72B0EFBB8008C32C4 /* GetAllDreamsUseCase.swift in Sources */,
 				FCA1F5B62AB67EF20063D3BE /* NavigableView.swift in Sources */,
+				FC4B6F1D2B0F341A0088883F /* Environment.swift in Sources */,
 				FCDF6CA52B0EE5E8008C32C4 /* Request.swift in Sources */,
 				FCA1F5C82AB6BF1B0063D3BE /* HomeViewModel.swift in Sources */,
 				FCA1F5B02AB67EDF0063D3BE /* AppCoordinator.swift in Sources */,

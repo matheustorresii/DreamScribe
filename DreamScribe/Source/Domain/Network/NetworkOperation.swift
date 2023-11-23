@@ -15,7 +15,9 @@ protocol NetworkOperationProtocol {
 final class NetworkOperation: NetworkOperationProtocol {
     // MARK: - PRIVATE PROPERTIES
     
-    private let baseUrl: String = "http://localhost:8080/api"
+    private var baseUrl: String {
+        return "http://localhost:\(ENV.port)/"
+    }
     
     // MARK: - PUBLIC METHODS
     
@@ -44,13 +46,22 @@ final class NetworkOperation: NetworkOperationProtocol {
     }
     
     private func getUrlRequestFor(request: RequestProtocol) throws -> URLRequest {
-        guard let url = URL(string: baseUrl + request.endpoint) else { throw RequestError.client }
+        var endpoint = request.endpoint
+        if endpoint.starts(with: "/") {
+            endpoint.remove(at: endpoint.startIndex)
+        }
+        guard let url = URL(string: baseUrl + endpoint) else {
+            throw RequestError.client
+        }
         
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = request.method.rawValue
         if let requestBody = request.body, let encodedBody = try? JSONEncoder().encode(requestBody) {
             urlRequest.httpBody = encodedBody
         }
+        urlRequest.addValue("application/json", forHTTPHeaderField: "Accept")
+        urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        urlRequest.addValue("true", forHTTPHeaderField: "X-Use-Cache")
         return urlRequest
     }
 }

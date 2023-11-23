@@ -30,8 +30,8 @@ protocol RequestProtocol {
 
 enum Request: RequestProtocol {
     case getAllDreams
-    case createDream(dream: DreamAPIModel)
-    case deleteDreamById(id: Int)
+    case createDream(dream: DreamModel)
+    case deleteDreamById(id: String)
     
     var endpoint: String {
         switch self {

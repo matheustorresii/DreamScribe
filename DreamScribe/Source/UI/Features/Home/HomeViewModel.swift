@@ -35,10 +35,10 @@ final class HomeViewModel: ObservableObject {
     // MARK: - PUBLIC METHODS
     
     func removeDream(_ dream: DreamModel) {
-        guard let index: Int = dreams.firstIndex(where: { $0.id == dream.id }) else { return }
+        guard let dream = dreams.first(where: { $0.id == dream.id }) else { return }
         state = .loading
         Task { @MainActor in
-            guard let _ = try? await deleteDreamByIdUseCase.execute(dreamId: index) else {
+            guard let _ = try? await deleteDreamByIdUseCase.execute(dreamId: dream.id) else {
                 state = .error
                 return
             }

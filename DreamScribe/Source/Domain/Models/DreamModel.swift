@@ -7,34 +7,41 @@
 
 import Foundation
 
-struct DreamAPIModel: Codable {
-    let id: Int?
-    let text: String?
-    let tags: String?
-    let type: DreamType?
-    let createdAt: String?
-    
-    func toModel() -> DreamModel {
-        .init(date: createdAt ?? "",
-              description: text ?? "",
-              tags: (tags ?? "").components(separatedBy: ","),
-              type: type ?? .normal)
-    }
-}
-
 struct DreamModel: Codable {
-    var id: UUID = .init()
+    let id: String
     let date: String
-    let description: String
+    let text: String
     let tags: [String]
     let type: DreamType
     
-    func toApiModel() -> DreamAPIModel {
-        .init(id: nil,
-              text: description,
-              tags: tags.joined(separator: ","),
-              type: type,
-              createdAt: date)
+    init(id: String, date: String, text: String, tags: [String], type: DreamType) {
+        self.id = id
+        self.date = date
+        self.text = text
+        self.tags = tags
+        self.type = type
+    }
+    
+    enum CodingKeys: CodingKey {
+        case id, date, text, tags, type
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.id = try container.decode(String.self, forKey: .id)
+        self.date = try container.decode(String.self, forKey: .date)
+        self.text = try container.decode(String.self, forKey: .text)
+        self.tags = (try container.decode(String.self, forKey: .tags)).components(separatedBy: ",")
+        self.type = try container.decode(DreamType.self, forKey: .type)
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.id, forKey: .id)
+        try container.encode(self.date, forKey: .date)
+        try container.encode(self.text, forKey: .text)
+        try container.encode(self.tags.joined(separator: ","), forKey: .tags)
+        try container.encode(self.type, forKey: .type)
     }
 }
 

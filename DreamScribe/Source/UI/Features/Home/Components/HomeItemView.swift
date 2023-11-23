@@ -20,7 +20,7 @@ struct HomeItemView: View {
                 .foregroundColor(.dreamPurple)
                 .fontWeight(.bold)
                 .frame(maxWidth: .infinity, alignment: .leading)
-            Text(dream.description)
+            Text(dream.text)
                 .foregroundColor(.dreamPurple)
                 .lineLimit(3)
                 .frame(maxWidth: .infinity, alignment: .leading)

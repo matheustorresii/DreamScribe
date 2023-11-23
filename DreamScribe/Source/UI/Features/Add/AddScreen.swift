@@ -92,8 +92,9 @@ struct AddScreen: View, NavigableView {
         dateFormatter.dateStyle = .full
         dateFormatter.timeStyle = .none
         let date = dateFormatter.string(from: .init())
-        let dream = DreamModel(date: date,
-                               description: text,
+        let dream = DreamModel(id: "\(UUID())",
+                               date: date,
+                               text: text,
                                tags: tagCollection,
                                type: .init(rawValue: dreamType) ?? .normal)
         viewModel.saveDream(dream)
