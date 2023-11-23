@@ -16,7 +16,6 @@ enum FlowRoute {
     case home
     case add
     case dream(DreamModel)
-    case analytics
     
     static var defaultRoute: FlowRoute {
         return .home
@@ -26,7 +25,7 @@ enum FlowRoute {
 extension FlowRoute: Hashable {
     static func == (lhs: FlowRoute, rhs: FlowRoute) -> Bool {
         switch (lhs, rhs) {
-        case (.home, .home), (.add, .add), (.dream, .dream), (.analytics, .analytics):
+        case (.home, .home), (.add, .add), (.dream, .dream):
             return true
         default:
             return false
@@ -41,8 +40,6 @@ extension FlowRoute: Hashable {
             hasher.combine(2)
         case .dream:
             hasher.combine(4)
-        case .analytics:
-            hasher.combine(8)
         }
     }
 }

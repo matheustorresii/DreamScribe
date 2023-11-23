@@ -7,36 +7,33 @@
 
 import Foundation
 
-class AddViewModel: ObservableObject {
+enum AddViewState {
+    case idle
+    case loading
+    case created
+    case error
+}
+
+final class AddViewModel: ObservableObject {
+    
+    // MARK: - PUBLIC PROPERTIES
+    
+    @Published private(set) var state: AddViewState = .idle
     
     // MARK: - PRIVATE PROPERTIES
     
-    private var dreams: [DreamModel] = []
-    private let dreamsAppStorageKey = "DREAMS"
-    
-    // MARK: - INITIALIZERS
-    
-    init() {
-        setupDreams()
-    }
+    private let createDreamUseCase: CreateDreamUseCaseProtocol = CreateDreamUseCase()
     
     // MARK: - PUBLIC METHODS
     
     func saveDream(_ dream: DreamModel) {
-        dreams.insert(dream, at: .zero)
-        updateDreams()
-    }
-    
-    // MARK: - PRIVATE METHODS
-    
-    private func setupDreams() {
-        guard let data = UserDefaults.standard.data(forKey: dreamsAppStorageKey),
-              let savedDreams = try? JSONDecoder().decode([DreamModel].self, from: data) else { return }
-        dreams = savedDreams
-    }
-    
-    private func updateDreams() {
-        guard let data = try? JSONEncoder().encode(dreams) else { return }
-        UserDefaults.standard.set(data, forKey: dreamsAppStorageKey)
+        state = .loading
+        Task { @MainActor in
+            guard let _ = try? await createDreamUseCase.execute(dream: dream) else {
+                state = .error
+                return
+            }
+            state = .created
+        }
     }
 }

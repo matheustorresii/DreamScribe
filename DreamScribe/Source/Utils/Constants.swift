@@ -7,6 +7,10 @@
 
 import Foundation
 
+var MOCK: Bool = true
+
+let dreamsAppStorageKey = "DREAMS"
+
 let mockDreams: [DreamModel] = [
     .init(date: "Saturday, 8th August 2020",
           description: "I was in my high scholl with my friend Gabriela, trying to run from mysterious man that was searching for us.",

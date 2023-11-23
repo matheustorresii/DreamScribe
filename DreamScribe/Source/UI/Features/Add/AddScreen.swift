@@ -16,7 +16,6 @@ struct AddScreen: View, NavigableView {
     
     // MARK: - PRIVATE PROPERTIES
     
-    @State private var isLoading: Bool = false
     @State private var dreamType: String = DreamType.normal.rawValue
     @State private var text: String = ""
     @State private var tag: String = ""
@@ -29,28 +28,7 @@ struct AddScreen: View, NavigableView {
     var body: some View {
         ZStack {
             Color.dreamPink.ignoresSafeArea()
-            ScrollView {
-                VStack(alignment: .leading, spacing: 8) {
-                    buildTextEditor()
-                    buildSegmentedPicker()
-                    Text("Insert tags:")
-                        .fontWeight(.bold)
-                        .foregroundColor(.dreamPurple)
-                    
-                    TextField("College, Mom, Happiness...", text: $tag, onCommit: {
-                        tagCollection.append(tag)
-                    }).onSubmit {
-                        tag = ""
-                    }
-                    buildTagsListView()
-                }
-            }
-            .padding(.horizontal, 16)
-        }
-        .overlay {
-            if isLoading {
-                LoadingView()
-            }
+            buildViewForState()
         }
         .navigationTitle("New Dream")
         .navigationBarTitleDisplayMode(.inline)
@@ -66,8 +44,47 @@ struct AddScreen: View, NavigableView {
     
     // MARK: - PRIVATE METHODS
     
+    @ViewBuilder
+    private func buildViewForState() -> some View {
+        switch viewModel.state {
+        case .idle:
+            buildScrollView()
+        case .loading:
+            LoadingView()
+        case .error:
+            ErrorView()
+        case .created:
+            LoadingView()
+                .onAppear {
+                    Task { @MainActor in
+                        self.navigation.send(.pop)
+                    }
+                }
+        }
+    }
+    
+    @ViewBuilder
+    private func buildScrollView() -> some View {
+        ScrollView {
+            VStack(alignment: .leading, spacing: 8) {
+                buildTextEditor()
+                buildSegmentedPicker()
+                Text("Insert tags:")
+                    .fontWeight(.bold)
+                    .foregroundColor(.dreamPurple)
+                
+                TextField("College, Mom, Happiness...", text: $tag, onCommit: {
+                    tagCollection.append(tag)
+                }).onSubmit {
+                    tag = ""
+                }
+                buildTagsListView()
+            }
+        }
+        .padding(.horizontal, 16)
+    }
+    
     private func didTapSave() {
-        isLoading = true
         let dateFormatter = DateFormatter()
         dateFormatter.timeZone = .current
         dateFormatter.locale = .current
@@ -80,9 +97,6 @@ struct AddScreen: View, NavigableView {
                                tags: tagCollection,
                                type: .init(rawValue: dreamType) ?? .normal)
         viewModel.saveDream(dream)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
-            self.navigation.send(.pop)
-        }
     }
     
     @ViewBuilder

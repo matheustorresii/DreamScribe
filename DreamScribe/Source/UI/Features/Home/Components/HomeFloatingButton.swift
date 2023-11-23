@@ -8,13 +8,14 @@
 import SwiftUI
 
 struct HomeFloatingButton: View {
+    var icon: String
     var action: (() -> Void)?
     
     var body: some View {
         Button {
             action?()
         } label: {
-            Image(systemName: "plus")
+            Image(systemName: icon)
                 .font(.title.weight(.semibold))
                 .padding()
                 .background(Color.dreamPurple)
@@ -28,6 +29,6 @@ struct HomeFloatingButton: View {
 
 struct HomeFloatingButton_Previews: PreviewProvider {
     static var previews: some View {
-        HomeFloatingButton()
+        HomeFloatingButton(icon: "plus")
     }
 }

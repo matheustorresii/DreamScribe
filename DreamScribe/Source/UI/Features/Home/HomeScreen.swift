@@ -16,19 +16,23 @@ struct HomeScreen: View, NavigableView {
     // MARK: - PRIVATE PROPERTIES
     
     @ObservedObject private var viewModel: HomeViewModel = .init()
+    @State private var isShowingAnalyticsBottomsheet: Bool = false
     
     // MARK: - BODY
     
     var body: some View {
         ZStack(alignment: .bottomTrailing) {
             Color.dreamPink.ignoresSafeArea()
-            if viewModel.dreams.isEmpty {
-                HomeEmptyView()
-            } else {
-                buildListView()
-            }
-            HomeFloatingButton {
-                didTapFloatingButton()
+            buildViewForState()
+            VStack(spacing: 0) {
+                if case .content(let dreams) = viewModel.state, !dreams.isEmpty {
+                    HomeFloatingButton(icon: "chart.bar.xaxis") {
+                        isShowingAnalyticsBottomsheet = true
+                    }
+                }
+                HomeFloatingButton(icon: "plus") {
+                    didTapFloatingButton()
+                }
             }
         }
         .onAppear {
@@ -39,9 +43,27 @@ struct HomeScreen: View, NavigableView {
     // MARK: - PRIVATE METHODS
     
     @ViewBuilder
-    private func buildListView() -> some View {
+    private func buildViewForState() -> some View {
+        switch viewModel.state {
+        case .idle, .loading:
+            LoadingView()
+        case .content(let dreams):
+            if dreams.isEmpty {
+                HomeEmptyView()
+            } else {
+                buildListView(dreams: dreams)
+                    .bottomsheet(state: $isShowingAnalyticsBottomsheet,
+                                 innerView: HomeAnalyticsView(dreams: dreams).toAny())
+            }
+        case .error:
+            ErrorView()
+        }
+    }
+    
+    @ViewBuilder
+    private func buildListView(dreams: [DreamModel]) -> some View {
         ScrollView {
-            ForEach(Array(viewModel.dreams.enumerated()), id: \.offset) { (index, dream) in
+            ForEach(Array(dreams.enumerated()), id: \.offset) { (index, dream) in
                 HomeItemView(dream: dream, didTapDream: { dream in
                     didTapDream(dream)
                 }, didRemoveDream: { dream in
@@ -57,16 +79,6 @@ struct HomeScreen: View, NavigableView {
         .navigationTitle("DreamScribe")
         .navigationBarTitleDisplayMode(.large)
         .toolbarBackground(Color.dreamPink, for: .navigationBar)
-        .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
-                Button {
-                    navigation.send(.push(.analytics))
-                } label: {
-                    Image(systemName: "chart.bar.xaxis")
-                        .foregroundColor(.dreamPurple)
-                }
-            }
-        }
     }
     
     private func didTapDream(_ dream: DreamModel) {

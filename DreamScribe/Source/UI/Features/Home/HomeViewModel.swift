@@ -7,15 +7,24 @@
 
 import Foundation
 
-class HomeViewModel: ObservableObject {
+enum HomeViewState {
+    case idle
+    case content([DreamModel])
+    case error
+    case loading
+}
+
+final class HomeViewModel: ObservableObject {
     
     // MARK: - PUBLIC PROPERTIES
     
-    @Published private(set) var dreams: [DreamModel] = []
+    @Published private(set) var state: HomeViewState = .idle
     
     // MARK: - PRIVATE PROPERTIES
     
-    private let dreamsAppStorageKey = "DREAMS"
+    private let getAllDreamsUseCase: GetAllDreamsUseCaseProtocol = GetAllDreamsUseCase()
+    private let deleteDreamByIdUseCase: DeleteDreamByIdUseCaseProtocol = DeleteDreamByIdUseCase()
+    private var dreams: [DreamModel] = []
     
     // MARK: - INITIALIZERS
     
@@ -26,9 +35,15 @@ class HomeViewModel: ObservableObject {
     // MARK: - PUBLIC METHODS
     
     func removeDream(_ dream: DreamModel) {
-        guard let index = dreams.firstIndex(where: { $0.id == dream.id }) else { return }
-        dreams.remove(at: index)
-        updateDreams()
+        guard let index: Int = dreams.firstIndex(where: { $0.id == dream.id }) else { return }
+        state = .loading
+        Task { @MainActor in
+            guard let _ = try? await deleteDreamByIdUseCase.execute(dreamId: index) else {
+                state = .error
+                return
+            }
+            setupDreams()
+        }
     }
     
     func onAppear() {
@@ -38,13 +53,14 @@ class HomeViewModel: ObservableObject {
     // MARK: - PRIVATE METHODS
     
     private func setupDreams() {
-        guard let data = UserDefaults.standard.data(forKey: dreamsAppStorageKey),
-              let savedDreams = try? JSONDecoder().decode([DreamModel].self, from: data) else { return }
-        dreams = savedDreams
-    }
-    
-    private func updateDreams() {
-        guard let data = try? JSONEncoder().encode(dreams) else { return }
-        UserDefaults.standard.set(data, forKey: dreamsAppStorageKey)
+        state = .loading
+        Task { @MainActor in
+            guard let response = try? await getAllDreamsUseCase.execute() else {
+                state = .error
+                return
+            }
+            dreams = response
+            state = .content(response)
+        }
     }
 }
