@@ -52,13 +52,14 @@ struct AddScreen: View, NavigableView {
         case .loading:
             LoadingView()
         case .error:
-            ErrorView()
+            ErrorView(label: "Back",
+                      icon: "arrow.clockwise") {
+                navigation.send(.pop)
+            }
         case .created:
             LoadingView()
                 .onAppear {
-                    Task { @MainActor in
-                        self.navigation.send(.pop)
-                    }
+                    navigation.send(.pop)
                 }
         }
     }
@@ -92,8 +93,7 @@ struct AddScreen: View, NavigableView {
         dateFormatter.dateStyle = .full
         dateFormatter.timeStyle = .none
         let date = dateFormatter.string(from: .init())
-        let dream = DreamModel(id: "\(UUID())",
-                               date: date,
+        let dream = DreamModel(date: date,
                                text: text,
                                tags: tagCollection,
                                type: .init(rawValue: dreamType) ?? .normal)

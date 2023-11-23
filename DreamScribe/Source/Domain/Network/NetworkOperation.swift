@@ -38,11 +38,22 @@ final class NetworkOperation: NetworkOperationProtocol {
     func request(_ request: RequestProtocol) async throws -> Bool {
         let urlRequest = try getUrlRequestFor(request: request)
         
-        guard let (_, _) = try? await URLSession.shared.data(for: urlRequest) else {
+        guard let (_, response) = try? await URLSession.shared.data(for: urlRequest) else {
             throw RequestError.connection
         }
         
-        return true
+        guard let httpUrlResponse = response as? HTTPURLResponse else {
+            throw RequestError.unknown
+        }
+        
+        switch httpUrlResponse.statusCode {
+        case 200..<300:
+            return true
+        case 300..<500:
+            throw RequestError.client
+        default:
+            throw RequestError.server
+        }
     }
     
     private func getUrlRequestFor(request: RequestProtocol) throws -> URLRequest {

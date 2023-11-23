@@ -10,17 +10,17 @@ import Foundation
 let dreamsAppStorageKey = "DREAMS"
 
 let mockDreams: [DreamModel] = [
-    .init(id: "\(UUID())",
+    .init(id: 1,
           date: "Saturday, 8th August 2020",
           text: "I was in my high scholl with my friend Gabriela, trying to run from mysterious man that was searching for us.",
           tags: ["Gabriela", "High School", "Mysterious Man"],
           type: .nightmare),
-    .init(id: "\(UUID())",
+    .init(id: 2,
           date: "Monday, 9th August 2020",
           text: "It was kinda nice",
           tags: ["Happy"],
           type: .normal),
-    .init(id: "\(UUID())",
+    .init(id: 3,
           date: "Monday, 10th August 2020",
           text: """
           A really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really really long lucid dream

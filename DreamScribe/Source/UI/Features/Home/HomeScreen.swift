@@ -24,7 +24,7 @@ struct HomeScreen: View, NavigableView {
         ZStack(alignment: .bottomTrailing) {
             Color.dreamPink.ignoresSafeArea()
             buildViewForState()
-            VStack(spacing: 0) {
+            VStack(spacing: 8) {
                 if case .content(let dreams) = viewModel.state, !dreams.isEmpty {
                     HomeFloatingButton(icon: "chart.bar.xaxis") {
                         isShowingAnalyticsBottomsheet = true
@@ -56,7 +56,10 @@ struct HomeScreen: View, NavigableView {
                                  innerView: HomeAnalyticsView(dreams: dreams).toAny())
             }
         case .error:
-            ErrorView()
+            ErrorView(label: "Refresh",
+                      icon: "arrow.clockwise") {
+                viewModel.onAppear()
+            }
         }
     }
     

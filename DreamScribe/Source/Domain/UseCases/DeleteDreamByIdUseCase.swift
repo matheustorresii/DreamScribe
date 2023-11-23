@@ -8,7 +8,7 @@
 import Foundation
 
 protocol DeleteDreamByIdUseCaseProtocol {
-    func execute(dreamId: String) async throws
+    func execute(dreamId: Int) async throws
 }
 
 final class DeleteDreamByIdUseCase: DeleteDreamByIdUseCaseProtocol {
@@ -25,7 +25,7 @@ final class DeleteDreamByIdUseCase: DeleteDreamByIdUseCaseProtocol {
     
     // MARK: - PUBLIC METHODS
     
-    func execute(dreamId: String) async throws {
+    func execute(dreamId: Int) async throws {
         if ENV == .local {
             return localExecute(dreamId: dreamId)
         }
@@ -36,7 +36,7 @@ final class DeleteDreamByIdUseCase: DeleteDreamByIdUseCaseProtocol {
         }
     }
     
-    private func localExecute(dreamId: String) {
+    private func localExecute(dreamId: Int) {
         guard let data = UserDefaults.standard.data(forKey: dreamsAppStorageKey),
               var savedDreams = try? JSONDecoder().decode([DreamModel].self, from: data) else { return }
         

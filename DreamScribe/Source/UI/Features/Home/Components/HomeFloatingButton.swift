@@ -22,8 +22,6 @@ struct HomeFloatingButton: View {
                 .foregroundColor(.dreamPink)
                 .clipShape(Circle())
         }
-        .padding()
-
     }
 }
 

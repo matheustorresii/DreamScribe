@@ -38,7 +38,7 @@ final class HomeViewModel: ObservableObject {
         guard let dream = dreams.first(where: { $0.id == dream.id }) else { return }
         state = .loading
         Task { @MainActor in
-            guard let _ = try? await deleteDreamByIdUseCase.execute(dreamId: dream.id) else {
+            guard let id = dream.id, let _ = try? await deleteDreamByIdUseCase.execute(dreamId: id) else {
                 state = .error
                 return
             }

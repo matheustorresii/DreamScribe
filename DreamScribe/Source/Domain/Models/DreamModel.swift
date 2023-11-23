@@ -8,13 +8,17 @@
 import Foundation
 
 struct DreamModel: Codable {
-    let id: String
+    let id: Int?
     let date: String
     let text: String
     let tags: [String]
     let type: DreamType
     
-    init(id: String, date: String, text: String, tags: [String], type: DreamType) {
+    init(id: Int? = nil,
+         date: String,
+         text: String,
+         tags: [String],
+         type: DreamType) {
         self.id = id
         self.date = date
         self.text = text
@@ -28,7 +32,7 @@ struct DreamModel: Codable {
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.id = try container.decode(String.self, forKey: .id)
+        self.id = try? container.decode(Int.self, forKey: .id)
         self.date = try container.decode(String.self, forKey: .date)
         self.text = try container.decode(String.self, forKey: .text)
         self.tags = (try container.decode(String.self, forKey: .tags)).components(separatedBy: ",")
@@ -37,7 +41,9 @@ struct DreamModel: Codable {
     
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.id, forKey: .id)
+        if let id = self.id {
+            try container.encode(id, forKey: .id)
+        }
         try container.encode(self.date, forKey: .date)
         try container.encode(self.text, forKey: .text)
         try container.encode(self.tags.joined(separator: ","), forKey: .tags)
